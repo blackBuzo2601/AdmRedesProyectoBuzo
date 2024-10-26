@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escaneo de Red</title>
+    <link rel="stylesheet" />
+    <meta http-equiv="refresh" content="5" />
+
+    <style>
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: orange;
+      }
+      .host {
+        padding: 10px;
+        width: 200px;
+        text-align: center;
+      }
+      .ACTIVA {
+        border: 3px;
+        border-style: solid;
+        background-color: green;
+        color: white;
+      }
+      .INACTIVA {
+        border: 3px;
+        border-style: solid;
+        background-color: gray;
+        color: white;
+      }
+      #seccionuno {
+        width: 700px;
+        height: 100px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 50px;
+      }
+      h2 {
+        text-align: center;
+      }
+      #formulario {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+      #formulario label,
+      input {
+        width: 150px;
+        height: 20px;
+        font-size: 20px;
+      }
+      #formulario button {
+        width: 150px;
+        height: 30px;
+        background-color: aquamarine;
+        font-size: 20px;
+        border-radius: 10px;
+      }
+      #divadicional {
+        width: 1000px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #secciondos {
+        margin-top: 100px;
+      }
+      #datosmios {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="datosmios">
+      <p>BUZO ZAMORA ELIAN</p>
+      <p>20760257</p>
+      <p>8SE</p>
+      <p>SOLUCIÓN UNIDAD 3</p>
+    </div>
+    <div id="divadicional">
+      <section id="seccionuno">
+        <h1>Escaneo con nmap</h1>
+        <form id="formulario" method="post">
+          <div>
+            <label for="gateway">Introduce el Gateway:</label>
+            <input type="text" name="gateway" required />
+          </div>
+          <button type="submit">Escanear</button>
+        </form>
+      </section>
+
+      <section id="secciondos">
+        <div class="resultados">
+          {% if hosts %}
+          <h2>Resultados:</h2>
+          {% for ip, state in hosts %}
+          <div class="host {{ 'ACTIVA' if state == 'ACTIVA' else 'INACTIVA' }}">
+            {{ ip }} - {{ state }}
+          </div>
+          {% endfor %} {% endif %}
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
